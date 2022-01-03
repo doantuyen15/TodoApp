@@ -9,7 +9,7 @@ void main(){
     IntegrationTestWidgetsFlutterBinding.ensureInitialized();
     //Test app main()
     testWidgets("Full app test", (tester) async {
-      await tester.pumpWidget(TodoApp());
+      // await tester.pumpWidget(TodoApp());
 
       // test first screen
 

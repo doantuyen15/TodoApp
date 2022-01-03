@@ -17,47 +17,29 @@ Future<void> main() async {
   final dao = database.taskDAO;
   Get.put(dao);
 
-  // runApp(TodoApp(dao: dao));
-  runApp(TodoApp());
+  runApp(TodoApp(dao: dao));
 }
-// void main() => runApp(TodoApp());
+
 
 class TodoApp extends StatelessWidget {
-  // const TodoApp({Key? key, required this.dao}) : super(key: key);
-  // final TaskDAO dao;
-  const TodoApp({Key? key}) : super(key: key);
+  const TodoApp({Key? key, required this.dao}) : super(key: key);
+  final TaskDAO dao;
 
   @override
   Widget build(BuildContext context) {
-    // return MaterialApp(home: HomePage(dao: dao));
-    return MaterialApp(home: HomePage());
+    return MaterialApp(home: HomePage(dao: dao));
   }
 }
 
 class HomePage extends StatefulWidget {
-  // const HomePage({Key? key, required this.dao}) : super(key: key);
-  // final TaskDAO dao;
-  const HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key, required this.dao}) : super(key: key);
+  final TaskDAO dao;
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  final TaskDAO dao = Get.find();
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   builder().whenComplete(() => Get.put(dao));
-  // }
-
-  // Future builder() async {
-  //   WidgetsFlutterBinding.ensureInitialized();
-  //   final database =
-  //       await $FloorAppDatabase.databaseBuilder('task_database.db').build();
-  //   dao = database.taskDAO;
-  // }
 
   int selectedIndex = 0;
   Widget _allTodoScreen = AllTodoScreen();
@@ -66,20 +48,15 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
-      // key: scaffoldKey,
       appBar: AppBar(
         actions: [
           IconButton(
               key: const Key('buttonAddDialog'),
               onPressed: () async {
-                // await Get.to(const AddScreen());
                 await showCreateTodoDialog(context)
-                    .whenComplete(() => setState(() {
-                          // selectedIndex = 0;
-                        }));
+                    .whenComplete(() => setState(() {}));
               },
               icon: const Icon(Icons.add))
         ],
@@ -182,7 +159,7 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       final task = Task(_textEditingController.text, isChecked);
-                      await dao.insertTask(task);
+                      await widget.dao.insertTask(task);
                       Navigator.of(context).pop();
                     }
                   },

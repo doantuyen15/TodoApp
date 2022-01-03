@@ -15,35 +15,7 @@ class AllTodoScreen extends StatefulWidget {
 }
 
 class _AllTodoScreenState extends State<AllTodoScreen> {
-  // late TaskDAO dao;
   TaskDAO dao = Get.find();
-
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   print("initState AllTodo");
-  // }
-
-  // @override
-  // void didChangeDependencies() {
-  //   super.didChangeDependencies();
-  //   print("didChangeDependencies alltodoscreen");
-  //   setState(() {
-  //
-  //   });
-  // }
-
-  // Future<void> iniDB() async {
-  //   var db =
-  //       await $FloorAppDatabase.databaseBuilder('task_database.db').build();
-  //   dao = db.taskDAO;
-  //   print("initDB: dao = $dao");
-  // }
-  //
-  // Future<List<Task>> getListData() async {
-  //   await iniDB();
-  //   return dao.getAllTask();
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -103,32 +75,6 @@ class _AllTodoScreenState extends State<AllTodoScreen> {
                                 ? Colors.lightBlue
                                 : Colors.red,
                             size: 30.0)));
-                // return CheckboxListTile(
-                //   title: Text(_task.taskName),
-                //   value: _task.isComplete,
-                //   onChanged: (val) async {
-                //     _task.isComplete = val!;
-                //     /*final task = Task(
-                //         taskName: _task.taskName,
-                //         isComplete: val!
-                //     );*/
-                //     await dao.updateTask(_task);
-                //     // updateDB(task);
-                //     setState(() {
-                //       // updateDB(_task);
-                //     }
-                //     );
-                //     /*async {
-                //             final task = Task(
-                //                 taskName: _task.taskName,
-                //                 isComplete: _task.isComplete
-                //             );
-                //             await dao.updateTask(task);
-                //             // _task.isComplete = val!;
-                //       },*/
-                //     // );
-                //   },
-                // );
               },
             );
           } else {
@@ -136,8 +82,4 @@ class _AllTodoScreenState extends State<AllTodoScreen> {
           }
         });
   }
-
-// Future<void> updateDB(Task task) async {
-//   await dao.updateTask(task);
-// }
 }
